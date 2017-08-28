@@ -1,0 +1,186 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<script src="../polyfills.ts"></script>
+<div class="container-fluide" style=" height:100%;width: 100%; padding-bottom: 10px;  /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #01A9DB, #04B486); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #01A9DB, #04B486); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #01A9DB,#04B486); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #01A9DB,#04B486);position:inherit; ">
+
+
+  <p style="font-size:80px; color:white;font-family: 'Arial Narrow'; padding-top: 120px; text-align: center"> MOVIE LIBRARY </p>
+
+
+
+  <div class="row">
+
+
+    <div class="col-md-11" style="text-align: center;">
+
+      <form  class="form-group">
+
+        <label class="radio-inline">
+          <input type="radio" name="optradio" class="radi"> <p style="color: white; font-size: 16px;margin-left: 52px;">Horror</p>
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" class="radi"><p style="color: white; font-size: 16px;margin-left: 72px;">Romantic</p>
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" class="radi"><p style="color: white; font-size: 16px;margin-left: 62px;">Comedy</p>
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" class="radi"><p style="color: white; font-size: 16px;margin-left: 62px;">Action</p>
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="optradio" class="radi"><p style="color: white; font-size: 16px;margin-left: 72px;">Animation</p>
+        </label>
+
+
+
+      </form>
+
+    </div>
+
+
+    <div class="col-md-1">
+
+    <button  *ngIf="hd" (click)="opw()" class="btn btn-primary" style="border: #fff; border-radius: 30px; height:60px; width: 60px; align-content: flex-end;box-shadow: #9694a6" data-toggle="modal" data-target="#exampleModal">
+    <i class="fa fa-plus fa-2x"  aria-hidden="true" style="color: white;text-align: center"></i>
+  </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div  class="container-fluide" style="background-color:#e9e9e9;text-align: center; width:100%;min-height:600px; height: auto;">
+
+
+
+
+
+  <div [hidden]="opent" style="width: 30%; text-align: center;margin-left:38%; margin-top: 03%; ">
+
+
+         <input class="form-control" type="text"  [(ngModel)]="Movie_title"   placeholder="Title" />
+
+        <input type="number" class="form-control" [(ngModel)]="Movie_dur" placeholder="Duration (in Min.)" />
+
+        <input type="text" class="form-control" [(ngModel)]="Movie_act"  placeholder="Actor" />
+
+        <input type="text" class="form-control" [(ngModel)]="Movie_dir" placeholder="Director"/>
+
+      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="Movie_type"  >
+        <option>Select</option>
+
+        <option>Horror</option>
+        <option>Comedy</option>
+        <option>Romantic</option>
+        <option>Action</option>
+        <option>Animation</option>
+      </select>
+
+
+    <p>{{Movie_title}}</p>
+
+    <button  class="btn btn-primary" (click)=" Addmovie()">Add</button>
+    <button  class="btn btn-danger" (click)=" colsub()">Cancel</button>
+
+  </div>
+
+
+
+
+
+  <div [hidden]="_opent" style="width: 30%; text-align: center;margin-left:38%; margin-top: 03%; ">
+    <input class="form-control" type="text"  [(ngModel)]="index"   placeholder="Title" [hidden]="true" />
+
+
+    <input class="form-control" type="text"  [(ngModel)]="_Movie_title"   placeholder="Title" />
+
+    <input type="number" class="form-control" [(ngModel)]="_Movie_dur" placeholder="Duration (in Min.)" />
+
+    <input type="text" class="form-control" [(ngModel)]="_Movie_act"  placeholder="Actor" />
+
+    <input type="text" class="form-control" [(ngModel)]="_Movie_dir" placeholder="Director"/>
+
+    <select class="form-control" id="exampleFormControlSelect11" [(ngModel)]="_Movie_type"  >
+      <option>Select</option>
+
+      <option>Horror</option>
+      <option>Comedy</option>
+      <option>Romantic</option>
+      <option>Action</option>
+      <option>Animation</option>
+    </select>
+
+
+    <p>{{Movie_title}}</p>
+
+    <button  class="btn btn-primary" (click)=" save()">Save</button>
+    <button  class="btn btn-danger" (click)=" can()">Cancel</button>
+
+  </div>
+
+
+
+  <div class="container-fluide">
+  <div class="row" style="padding-left: 26px;" >
+
+  <div class="card" style="width: 20rem;margin:17px; border-bottom: 9px solid #5fc6ff;" *ngFor=" let itemo of movie let i=index" >
+
+    <img  *ngIf="itemo.type=='Action'?true:false"  class="card-img-top" src="https://www.nyfa.edu/student-resources/wp-content/uploads/2015/03/action-movie.jpg" alt="Card image cap">
+
+    <img *ngIf="itemo.type=='Comedy'?true:false" class="card-img-top" src="http://www.tasteofcinema.com/wp-content/uploads/2016/07/Epic-Movie-2007.jpg" alt="Card image cap">
+    <img  *ngIf="itemo.type=='Romantic'?true:false" class="card-img-top" src="http://media.new.mensxp.com/media/content/2016/Dec/best-romantic-movies-of-2016-652x400-5-1482759588.jpg" alt="Card image cap">
+    <img  *ngIf="itemo.type=='Horror'?true:false" class="card-img-top" src="http://img-cdn.brainberries.co/wp-content/uploads/2015/09/Top-12-Creepy-Horror-Movies-That-You-Shouldnt-Watch-Alone-1.jpg" alt="Card image cap">
+    <img  *ngIf="itemo.type=='Animation'?true:false"class="card-img-top" src="http://webneel.com/daily/sites/default/files/images/daily/01-2016/25-the-nut-job-2-animation-movie-list-2016.preview.jpg" alt="Card image cap">
+
+
+
+    <div class="card-block">
+      <h6 class="card-title" style="font-size: 30px; color: #5fc6ff">{{itemo.title}}</h6>
+      <p class="card-text" style="color: #244b62; font-size: 20px;">{{itemo.act}}</p>
+      <p class="card-text" style="color: #a86d8d; font-size: 15px;">{{itemo.dir}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Duration:{{itemo.dur}}</li>
+      <li class="list-group-item"> Type:{{itemo.type}}</li>
+    </ul>
+    <div class="card-block">
+
+
+      <button  *ngIf="hd" (click)="edit(i)" type="button" class="btn btn-primary" style="border: #fff; border-radius: 15px; height:30px; width: 30px; box-shadow: #9694a6" data-toggle="modal" data-target="#exampleModal">
+        <i class="fa fa-pencil "  aria-hidden="true" style="color: white;text-align: center"></i>
+      </button>
+
+      <button  *ngIf="hd" (click)="delt(i)" type="button" class="btn btn-primary" style="border: #fff; border-radius: 15px; height:30px; width: 30px; box-shadow: #9694a6" data-toggle="modal" data-target="#exampleModal">
+        <i class="fa fa-trash "  aria-hidden="true" style="color: white;text-align: center"></i>
+      </button>
+    </div>
+  </div>
+  </div>
+
+  </div>
+
+    <div style="width: 100%; background-color: #ff435b;height: 2%;"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
