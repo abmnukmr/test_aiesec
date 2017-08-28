@@ -16,27 +16,20 @@
 
     <div class="col-md-11" style="text-align: center;">
 
-      <form  class="form-group">
+      <select  id="exampleFormControlSelect1y" [(ngModel)]="Movie_type_short"  >
+          <option>Select</option>
 
-        <label class="radio-inline">
-          <input type="radio" name="optradio" class="radi"> <p style="color: white; font-size: 16px;margin-left: 52px;">Horror</p>
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio" class="radi"><p style="color: white; font-size: 16px;margin-left: 72px;">Romantic</p>
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio" class="radi"><p style="color: white; font-size: 16px;margin-left: 62px;">Comedy</p>
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio" class="radi"><p style="color: white; font-size: 16px;margin-left: 62px;">Action</p>
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="optradio" class="radi"><p style="color: white; font-size: 16px;margin-left: 72px;">Animation</p>
-        </label>
+          <option>Horror</option>
+          <option>Comedy</option>
+          <option>Romantic</option>
+          <option>Action</option>
+          <option>Animation</option>
+        </select>
 
 
 
-      </form>
+
+      <button class="btn btn-outline-primary" (click)="filter()"> Filter </button>
 
     </div>
 
@@ -86,7 +79,6 @@
       </select>
 
 
-    <p>{{Movie_title}}</p>
 
     <button  class="btn btn-primary" (click)=" Addmovie()">Add</button>
     <button  class="btn btn-danger" (click)=" colsub()">Cancel</button>
@@ -132,7 +124,7 @@
   <div class="container-fluide">
   <div class="row" style="padding-left: 26px;" >
 
-  <div class="card" style="width: 20rem;margin:17px; border-bottom: 9px solid #5fc6ff;" *ngFor=" let itemo of movie let i=index" >
+  <div class="card" style="width: 20rem;margin:17px; border-bottom: 9px solid #5fc6ff;" *ngFor=" let itemo of movie let i=index" [hidden]="itemo.type==show?true:false"  >
 
     <img  *ngIf="itemo.type=='Action'?true:false"  class="card-img-top" src="https://www.nyfa.edu/student-resources/wp-content/uploads/2015/03/action-movie.jpg" alt="Card image cap">
 
