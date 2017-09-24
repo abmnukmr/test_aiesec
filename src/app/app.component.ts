@@ -13,9 +13,11 @@ export class AppComponent {
   opent= true;
   _opent= true;
   show: any;
+  crip: number= -1;
+  ico: string= "fa fa-chevron-circle-up";
 iname: any;
-
-  _Movie_typei;
+fihlter: any;
+  _Movie_typei: any;
   Movie_type_short: any;
    itemo: any;
   opentt= false;
@@ -61,14 +63,14 @@ iname: any;
 
   Addmovie(){
 
-    if(this.Movie_title !=" " && this.Movie_dur != "" && this.Movie_act !="" &&this.Movie_dir !="" &&this.Movie_type !=""){
+    if(this.Movie_title !=" " && this.Movie_dur != "" && this.Movie_act !="" &&this.Movie_dir !="" &&this._Movie_type !=""){
    this.item = {
      'title': this.Movie_title,
      'dur': this.Movie_dur,
      'act': this.Movie_act,
      'dir': this.Movie_dir,
-     'type': this.Movie_type,
-     'search': this.Movie_title + this._Movie_dur + this._Movie_act + this.Movie_dir + this.Movie_type
+     'type': this._Movie_type,
+     'search': this.Movie_title + this._Movie_dur + this._Movie_act + this.Movie_dir + this._Movie_type
    };
    console.log(this.item);
     this.movie.push(this.item);
@@ -105,7 +107,7 @@ iname: any;
   }
 
   filter(){
-    this._Movie_typei = this.show;
+    this.fihlter = this._Movie_typei;
   }
   initializeItems() {
     this.itemo = this.movie;
@@ -140,5 +142,54 @@ iname: any;
     }
   }
 
+
+
+  sort(property){
+    if(this.ico=="fa fa-chevron-circle-up" && this.crip == -1){
+      this.ico="fa fa-chevron-circle-down"
+      this.crip =1;
+      this.shortinc(property);
+    }
+    else {
+      this.ico="fa fa-chevron-circle-up";
+      this.crip = -1;
+      this.shortdec(property);
+    }
+
+  }
+
+
+   shortdec(property){
+     this.movie.sort(function(a, b){
+       if(a[property] < b[property]){
+         //this.ico="fa fa-chevron-circle-up"
+         return -1 * -1;
+
+       }
+       else if( a[property] > b[property]){
+         return 1 * -1;
+       }
+       else{
+         return 0;
+       }
+     });
+   }
+
+
+  shortinc(property){
+    this.movie.sort(function(a, b){
+      if(a[property] < b[property]){
+        //this.ico="fa fa-chevron-circle-up"
+        return -1 * 1;
+
+      }
+      else if( a[property] > b[property]){
+        return 1 * 1;
+      }
+      else{
+        return 0;
+      }
+    });
+  }
 
 }
