@@ -21,7 +21,7 @@
 
       <input #name type="text" class="form-control" placeholder="Search by Movie name, actor, director, duration" name="srch-term" id="srch-term" [(ngModel)]="iname" (ngModelChange)="getItems(iname)" style="margin-left:34%;  width: 40%">
 
-      <h6 style="color: white; font-size: 32px; margin-top: 20px;"> Short By:-</h6>
+      <h4 style="color: white; font-size: 22px; margin-top: 20px;"> Short By:-</h4>
 
       <div class="row" style="margin-top:50px; margin-left: 89px">
 
@@ -29,15 +29,15 @@
         </div>
 
         <div class="col-md-2">
-          <p   style="color: #ffffff"> Name <i   [ngClass]='ico' (click)="sort('title')" aria-hidden="true" style="color: white;text-align: center"></i> </p></div>
+          <p   style="color: #ffffff">  <button  (click)="sort('title')" class="btn btn-primary" style="background-color: transparent;background-color: transparent;"> <i   [ngClass]='ico'  aria-hidden="true" style="color: white;text-align: center"></i> Name</button></p></div>
         <div class="col-md-2">
-          <p   style="color: #fdfdff" > Actor <i [ngClass]='ico' (click)="sort('act')"  aria-hidden="true" style="color: white;text-align: center"></i></p></div>
+          <p   style="color: #fdfdff" ><button  (click)="sort('act')" class="btn btn-primary" style="background-color: transparent;background-color: transparent;"> <i   [ngClass]='ico'  aria-hidden="true" style="color: white;text-align: center"></i>Actor</button></div>
         <div class="col-md-2">
-          <p   style="color: #fdfdff"> Director <i [ngClass]='ico' (click)="sort('dir')" aria-hidden="true" style="color: white;text-align: center"></i></p></div>
+          <p   style="color: #fdfdff"> <button  (click)="sort('dir')" class="btn btn-primary" style="background-color: transparent;background-color: transparent;"> <i   [ngClass]='ico'  aria-hidden="true" style="color: white;text-align: center"></i>Director</button></p></div>
         <div class="col-md-2">
-          <p  style="color: #fdfdff"> Duration <i [ngClass]='ico' (click)="sort('dur')" aria-hidden="true" style="color: white;text-align: center"></i></p></div>
+          <p  style="color: #fdfdff"> <button  (click)="sort('dur')" class="btn btn-primary" style="background-color: transparent;background-color: transparent;"> <i   [ngClass]='ico'  aria-hidden="true" style="color: white;text-align: center"></i> Duration</button></p></div>
         <div class="col-md-2">
-          <p  style="color: #fdfdff"> Type <i [ngClass]='ico' (click)="sort('type')" aria-hidden="true" style="color: white;text-align: center"></i></p></div>
+          <p  style="color: #fdfdff"> <button  (click)="sort('type')" class="btn btn-primary" style="background-color: transparent;background-color: transparent;"> <i   [ngClass]='ico'  aria-hidden="true" style="color: white;text-align: center"></i> Type</button></p></div>
 
       </div>
 
