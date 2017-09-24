@@ -1,25 +1,31 @@
 import { Component } from '@angular/core';
+import {SearchPipePipe} from './search-pipe.pipe';
 
 @Component({
   selector: 'app-root',
+
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+//  pipe:[SearchPipePipe]
 })
 export class AppComponent {
   title = 'app';
   opent= true;
   _opent= true;
-  show= 'Action';
+  show: any;
+iname: any;
 
+  _Movie_typei;
   Movie_type_short: any;
-
+   itemo: any;
   opentt= false;
   movie: any= [{
     'title': 'Troy',
     'dur': '90',
     'act': 'sa',
     'dir': 'A j Mike',
-    'type': ' Action'
+    'type': 'Action',
+    'search':'Troy 90 sa A j Mike Action'
   }];
   hd= true;
   _Movie_title;
@@ -28,6 +34,7 @@ export class AppComponent {
   _Movie_dir;
   _Movie_type;
 
+ // _Movie_typei;
   Movie_title;
   Movie_dur;
   Movie_act;
@@ -44,26 +51,37 @@ export class AppComponent {
 
     this.opentt = true;
   }
- colsub(){
+ colsub() {
     this.opent = true;
    this.hd = true;
-
    this.opentt = false;
+
   }
 
 
   Addmovie(){
+
+    if(this.Movie_title !=" " && this.Movie_dur != "" && this.Movie_act !="" &&this.Movie_dir !="" &&this.Movie_type !=""){
    this.item = {
      'title': this.Movie_title,
      'dur': this.Movie_dur,
      'act': this.Movie_act,
      'dir': this.Movie_dir,
-     'type': this.Movie_type
+     'type': this.Movie_type,
+     'search': this.Movie_title + this._Movie_dur + this._Movie_act + this.Movie_dir + this.Movie_type
    };
    console.log(this.item);
     this.movie.push(this.item);
+    this.initializeItems();
+
     this.opent = true;
     this.hd = true;
+    this.Movie_type = "";
+      this.Movie_dur ="" ;
+      this.Movie_act= "" ;
+      this.Movie_dir = "";
+      this.Movie_title = "";
+    }
 
   }
 
@@ -86,6 +104,14 @@ export class AppComponent {
 
   }
 
+  filter(){
+    this._Movie_typei = this.show;
+  }
+  initializeItems() {
+    this.itemo = this.movie;
+  }
+
+
   save(){
     this.movie[this.index].title = this._Movie_title;
 
@@ -99,11 +125,20 @@ export class AppComponent {
      this._opent = true;
    }
 
+  getItems(ev) {
+    // Reset items back to all of the items
+    this.initializeItems();
 
-   filter(){
-     this.Movie_type_short= this.show;
+    // set val to the value of the ev target
+    const val = ev.target.value;
 
-   }
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() !== '') {
+      this.itemo.search = this.itemo.search.filter((item) => {
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+    }
+  }
 
 
 }

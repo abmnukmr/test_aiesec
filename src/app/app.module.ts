@@ -5,11 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SecondComponent } from './second/second.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { SearchPipePipe } from './search-pipe.pipe';
+import { OrderByPipe } from './order-by.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SecondComponent
+    SecondComponent,
+    SearchPipePipe,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
